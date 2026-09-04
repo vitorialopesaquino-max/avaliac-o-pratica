@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frutas Exóticas pelo Mundo</title>
+  <style>
+    /* Variáveis de Cores (Tema Claro por Padrão) */
+    :root {
+      --bg-color: #f4f4f9;
+      --text-color: #222222;
+      --card-bg: #ffffff;
+      --card-shadow: rgba(0, 0, 0, 0.1);
+      --primary-color: #2e7d32;
+      --button-bg: #e0e0e0;
+      --button-text: #222222;
+    }
+
+    /* Estilos do Tema Escuro */
+    [data-theme="dark"] {
+      --bg-color: #121212;
+      --text-color: #e0e0e0;
+      --card-bg: #1e1e1e;
+      --card-shadow: rgba(0, 0, 0, 0.5);
+      --primary-color: #81c784;
+      --button-bg: #333333;
+      --button-text: #ffffff;
+    }
+
+    * {
+      box-sizing: border-box;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 800px;
+      margin: 0 auto 30px auto;
+      border-bottom: 2px solid var(--primary-color);
+      padding-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--primary-color);
+    }
+
+    button {
+      background-color: var(--button-bg);
+      color: var(--button-text);
+      border: 1px solid var(--primary-color);
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    button:hover {
+      opacity: 0.9;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      gap: 20px;
+    }
+
+    .fruit-card {
+      background-color: var(--card-bg);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px var(--card-shadow);
+    }
+
+    .fruit-card h2 {
+      margin-top: 0;
+    }
+
+    .like-section {
+      margin-top: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Frutas Exóticas</h1>
+    <button id="theme-toggle" aria-label="Alternar tema">Modo Escuro 🌙</button>
+  </header>
+
+  <main>
+    <article class="fruit-card">
+      <h2>1. Pitaya (Fruta do Dragão)</h2>
+      <p>Originária das Américas, a Pitaya chama atenção por sua casca escamosa e polpa doce com pequenas sementes pretas. É rica em antioxidantes e fibras.</p>
+    </article>
+
+    <article class="fruit-card">
+      <h2>2. Rambutan</h2>
+      <p>Nativa do Sudeste Asiático, esta fruta possui uma casca avermelhada coberta por "espinhos" macios. Sua polpa é suculenta, translúcida e de sabor adocicado.</p>
+    </article>
+
+    <article class="fruit-card">
+      <h2>3. Mangostão</h2>
+      <p>Conhecida como a "Rainha das Frutas", tem origem na Indonésia. Por baixo de uma casca grossa e roxa, esconde-se uma polpa branca extremamente saborosa e aromática.</p>
+    </article>
+
+    <section class="like-section">
+      <button id="like-btn">Curtir ❤️ <span id="like-count">0</span></button>
+    </section>
+  </main>
+
+  <script>
+    // Lógica do Alternador de Tema (Claro / Escuro)
+    const themeToggleBtn = document.getElementById('theme-toggle');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme) {
+      document.documentElement.setAttribute('data-theme', currentTheme);
+      if (currentTheme === 'dark') {
+        themeToggleBtn.textContent = 'Modo Claro ☀️';
+      }
+    }
+
+    themeToggleBtn.addEventListener('click', () => {
+      let theme = document.documentElement.getAttribute('data-theme');
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+        themeToggleBtn.textContent = 'Modo Escuro 🌙';
+      } else {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        themeToggleBtn.textContent = 'Modo Claro ☀️';
+      }
+    });
+
+    // Lógica do Contador de Likes
+    const likeBtn = document.getElementById('like-btn');
+    const likeCount = document.getElementById('like-count');
+    let count = 0;
+
+    likeBtn.addEventListener('click', () => {
+      count++;
+      likeCount.textContent = count;
+    });
+  </script>
+
+</body>
+</html>
+
+    <style>
+        /* --- ESTILOS CSS --- */
+
+        /* Variáveis de cor para os temas */
+        :root {
+            --bg-color: #f0f0f0; /* Cor de fundo padrão (clara) */
+            --text-color: #333;   /* Cor do texto padrão (escura) */
+            --card-bg-color: white; /* Fundo dos cartões padrão */
+            --primary-color: #4CAF50; /* Verde principal */
+            --accent-color: #f44336; /* Vermelho para likes */
+            --button-text-color: white; /* Texto dos botões */
+            --toggle-bg-color: #ccc; /* Fundo do botão de tema padrão */
+        }
+
+        /* Estilos específicos para o tema escuro */
+        .dark-mode {
+            --bg-color: #1a1a1a;  /* Fundo escuro */
+            --text-color: #e0e0e0; /* Texto claro */
+            --card-bg-color: #333;  /* Fundo dos cartões escuro */
+            --primary-color: #81C784; /* Verde mais suave para contraste */
+            --accent-color: #e57373; /* Vermelho mais suave */
+            --button-text-color: #1a1a1a; /* Texto escuro nos botões claros */
+            --toggle-bg-color: #444; /* Fundo do botão de tema escuro */
+        }
+
+        body {
+            font-family: sans-serif;
+            margin: 20px;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s; /* Transição suave */
+        }
+
+        /* Container do botão de tema */
+        #theme-toggle-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 20px;
+        }
+
+        #theme-toggle-button {
+            padding: 10px 20px;
+            background-color: var(--toggle-bg-color);
+            border: 1px solid var(--text-color);
+            cursor: pointer;
+            border-radius: 5px;
+            color: var(--text-color);
+            font-weight: bold;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        /* Estilos para a seção de frutas */
+        .fruit-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .fruit-card {
+            background-color: var(--card-bg-color);
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .fruit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 4px 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .fruit-card h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        /* Estilos para o botão e contador de likes */
+        .like-container {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .like-button {
+            padding: 8px 15px;
+            background-color: var(--accent-color);
+            color: var(--button-text-color);
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        #like-counter {
+            font-size: 1.2em;
+            color: var(--accent-color);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div id="theme-toggle-container">
+        <button id="theme-toggle-button" aria-label="Alternar entre Tema Claro e Escuro">Alternar Tema</button>
+    </div>
+
+    <h1>Descubra o Mundo das Frutas Exóticas</h1>
+
+    <div class="fruit-grid">
+        <div class="fruit-card">
+            <h2>Pitaya (Fruta do Dragão)
